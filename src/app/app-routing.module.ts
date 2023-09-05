@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'rec-contra',
     loadChildren: () => import('./pages/rec-contra/rec-contra.module').then( m => m.RecContraPageModule)
   },
+  {
+    path: 'valid-data-rec',
+    loadChildren: () => import('./pages/valid-data-rec/valid-data-rec.module').then( m => m.ValidDataRecPageModule)
+  },
 ];
 
 @NgModule({

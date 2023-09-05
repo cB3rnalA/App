@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'rec-contra',
+    loadChildren: () => import('./pages/rec-contra/rec-contra.module').then( m => m.RecContraPageModule)
+  },
 ];
 
 @NgModule({

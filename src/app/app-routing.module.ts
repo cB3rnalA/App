@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'valid-data-rec',
     loadChildren: () => import('./pages/valid-data-rec/valid-data-rec.module').then( m => m.ValidDataRecPageModule)
   },
+  {
+    path: 'escaner',
+    loadChildren: () => import('./pages/escaner/escaner.module').then( m => m.EscanerPageModule)
+  },
 ];
 
 @NgModule({

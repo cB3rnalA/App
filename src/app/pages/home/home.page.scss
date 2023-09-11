@@ -2,30 +2,54 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* Esto asegura que el contenedor ocupe toda la altura de la pantalla */
+  height: 100%;
+  /* Esto asegura que el contenedor ocupe toda la altura de la pantalla */
 }
 
 .centered-button {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%; /* Esto asegura que el contenedor ocupe toda la altura de la pantalla */
+  height: 100%;
+  /* Esto asegura que el contenedor ocupe toda la altura de la pantalla */
 }
 
 /* mio */
 
-.cont-txtini{
+.cont-head{
+  margin-top: 6px;
+  margin-bottom: 10px;
+}
+
+.new-background-color{
+  --background: #8E9FF9;
+}
+
+.titl-heade{
+  text-align: center;
+  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+  font-size: 35px;
+  font-weight: 700;
+  color: white;
+}
+
+.cont-txtini {
   margin-top: 80px;
   margin-bottom: 60px;
 }
 
-.inic{
+.inic {
   font-size: 38px;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.registro-btn{
-margin-bottom: 15px;
-align-items: center;
-justify-content: center;
-  }
+.registro-btn {
+  margin-bottom: 8%;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-text{
+  max-width: 5rem;
+  min-width: 2rem;
+}

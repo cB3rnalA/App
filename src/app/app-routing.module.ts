@@ -31,6 +31,14 @@ const routes: Routes = [
     path: 'asignaturas',
     loadChildren: () => import('./pages/asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule)
   },
+  {
+    path: 'asignatura1',
+    loadChildren: () => import('./pages/asig/asignatura1/asignatura1.module').then( m => m.Asignatura1PageModule)
+  },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
   
 ];
 

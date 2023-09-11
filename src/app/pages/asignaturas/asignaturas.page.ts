@@ -15,4 +15,15 @@ export class AsignaturasPage implements OnInit {
   navegar(ruta:String){
     this.router.navigate(['/'+ruta]);
   }
+  
+    private values: string[] = ['first', 'second', 'third'];
+  
+    accordionGroupChange = (ev: any) => {
+      const collapsedItems = this.values.filter((value) => value !== ev.detail.value);
+      const selectedValue = ev.detail.value;
+  
+      console.log(
+        `Expanded: ${selectedValue === undefined ? 'None' : ev.detail.value} | Collapsed: ${collapsedItems.join(', ')}`
+      );
+    };
 }

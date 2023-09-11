@@ -27,6 +27,11 @@ const routes: Routes = [
     path: 'escaner',
     loadChildren: () => import('./pages/escaner/escaner.module').then( m => m.EscanerPageModule)
   },
+  {
+    path: 'asignaturas',
+    loadChildren: () => import('./pages/asignaturas/asignaturas.module').then( m => m.AsignaturasPageModule)
+  },
+  
 ];
 
 @NgModule({

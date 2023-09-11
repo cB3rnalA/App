@@ -4,3 +4,28 @@
   align-items: center;
   height: 100%; /* Esto asegura que el contenedor ocupe toda la altura de la pantalla */
 }
+
+.centered-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Esto asegura que el contenedor ocupe toda la altura de la pantalla */
+}
+
+/* mio */
+
+.cont-txtini{
+  margin-top: 80px;
+  margin-bottom: 60px;
+}
+
+.inic{
+  font-size: 38px;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.registro-btn{
+margin-bottom: 15px;
+align-items: center;
+justify-content: center;
+  }

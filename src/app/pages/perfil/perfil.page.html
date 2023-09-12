@@ -1,15 +1,50 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>perfil</ion-title>
-  </ion-toolbar>
+<ion-header style="background: #8E9FF9">
+  <div class="cont-head">
+    <ion-toolbar class="new-background-color">
+      <ion-title class="titl-heade">
+        Perfil
+      </ion-title>
+    </ion-toolbar>
+  </div>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">perfil</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div>
+    <div class="cont-card">
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-card-title>
+            Sebastian Rodrigo Bernal Aedo
+          </ion-card-title>
+          <ion-card-subtitle>Estudiante</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          Rut: 69698989-8
+          <br>
+          Carrera: Ingenieria en informatica
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="cont-opcion">
+      <ion-card>
+        <ion-item button (click)="navegar('inf-acad')" detail="true">
+          <ion-label>
+            <h3>Informacion academica</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item button (click)="navegar('datos-person')" detail="true">
+          <ion-label>
+            <h3>Datos Personales</h3>
+          </ion-label>
+        </ion-item>
+      </ion-card>
+    </div>
+
+
+  </div>
 </ion-content>
 
 <app-footer></app-footer>

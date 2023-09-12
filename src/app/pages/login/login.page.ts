@@ -26,7 +26,7 @@ usuario={
   }
 
   onSubmit(){
-    if (this.usuario.username=="se.bernal@duocuc.cl" && this.usuario.password=="1234"){
+    if (this.usuario.username=="correo@correo.cl" && this.usuario.password=="1234"){
       this.router.navigate(['/home'])
     }
     else{

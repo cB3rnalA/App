@@ -26,4 +26,25 @@ export class AsignaturasPage implements OnInit {
         `Expanded: ${selectedValue === undefined ? 'None' : ev.detail.value} | Collapsed: ${collapsedItems.join(', ')}`
       );
     };
+    /* configuraciones para calendario */
+    highlightedDates = (isoString: string | number | Date) => {
+      const date = new Date(isoString);
+      const utcDay = date.getUTCDate();
+  
+      if (utcDay % 5 === 0) {/* cada 5 dias se marca rojo */
+        return {
+          textColor: '#800080',
+          backgroundColor: '#ffc0cb',
+        };
+      }
+  
+      if (utcDay % 3 === 0) {/* cada 3 dias se marca azul */
+        return {
+          textColor: 'var(--ion-color-secondary-contrast)',
+          backgroundColor: 'var(--ion-color-secondary)',
+        };
+      }
+  
+      return undefined;
+    };/* configuraciones para calendario */
 }

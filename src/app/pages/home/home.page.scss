@@ -1,10 +1,29 @@
+/* 
+esto es para ajustar el texto, pero me falta configurarlo mejor, ayuda me tiene psicociado
+
+ion-content {
+  font-size: 16px; /* Puedes ajustar esto según tus preferencias 
+}
+
+.boton-responsivo {
+
+  font-size: 1.1rem; /* Esto ajusta el tamaño del texto en relación con el tamaño de fuente base 
+}
+
+@media (min-height: 900px) {
+  .boton-responsivo {
+    font-size: 1.5rem; /* Ajusta el tamaño del texto para dispositivos más grandes 
+  }
+}
 .centered-button {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  /* Esto asegura que el contenedor ocupe toda la altura de la pantalla */
+  /* Esto asegura que el contenedor ocupe toda la altura de la pantalla 
 }
+
+*/
 
 .centered-button {
   display: flex;
@@ -13,8 +32,6 @@
   height: 100%;
   /* Esto asegura que el contenedor ocupe toda la altura de la pantalla */
 }
-
-/* mio */
 
 .cont-head{
   margin-top: 6px;
@@ -39,7 +56,7 @@
 }
 
 .inic {
-  font-size: 38px;
+  font-size: 2.5rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -49,7 +66,3 @@
   justify-content: center;
 }
 
-.button-text{
-  max-width: 5rem;
-  min-width: 2rem;
-}

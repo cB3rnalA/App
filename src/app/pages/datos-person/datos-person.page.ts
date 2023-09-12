@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-datos-person',
   templateUrl: './datos-person.page.html',
   styleUrls: ['./datos-person.page.scss'],
 })
-export class DatosPersonPage implements OnInit {
+export class DatosPersonPage  {
 
-  constructor() { }
+  constructor(private router:Router) {}
 
-  ngOnInit() {
+  navegar(ruta:String){
+    this.router.navigate(['/'+ruta]);
   }
 
 }

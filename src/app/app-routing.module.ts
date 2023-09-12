@@ -39,6 +39,15 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./pages/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'inf-acad',
+    loadChildren: () => import('./pages/inf-acad/inf-acad.module').then( m => m.InfAcadPageModule)
+  },
+  {
+    path: 'datos-person',
+    loadChildren: () => import('./pages/datos-person/datos-person.module').then( m => m.DatosPersonPageModule)
+  },
+
   
 ];
 

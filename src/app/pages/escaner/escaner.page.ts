@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-escaner',
@@ -7,7 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EscanerPage implements OnInit {
 
-  constructor() { }
+  constructor(private alertController: AlertController) { }
+
+  async presentAlert() {
+    const alert = await this.alertController.create({
+      header: 'Registro de clase',
+      message: 'El registro de clase fue excitoso',
+      buttons: ['OK'],
+    });
+
+    await alert.present();
+  }
 
   ngOnInit() {
   }

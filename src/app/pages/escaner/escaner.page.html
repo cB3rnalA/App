@@ -1,12 +1,14 @@
 <app-header titulo="Escaner"></app-header>
 
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Escaner</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <div>
+    <div class="cont-qr">
+      <ion-button (click)="presentAlert()" fill="clear">
+        <ion-icon name="qr-code-outline" style="font-size: 15rem;"></ion-icon>
+      </ion-button>
+    </div>
+  </div>
 </ion-content>
 
 <app-footer></app-footer>

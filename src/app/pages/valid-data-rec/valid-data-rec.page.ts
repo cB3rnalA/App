@@ -23,7 +23,7 @@ export class ValidDataRecPage implements OnInit {
     this.router.navigate(['/'+ruta]);
   }
     onSubmit(){
-      if (this.usuario.Rut=="12345678-9" && this.usuario.Correo=="correo@correo.cl"){
+      if (this.usuario.Rut=="12345678-9" && this.usuario.Correo=="correo"){
         this.router.navigate(['/rec-contra'])
       }
       else{

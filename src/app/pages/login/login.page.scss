@@ -1,0 +1,69 @@
+.cont-head {
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+}
+
+.new-background-color {
+    --background: #8E9FF9;
+}
+
+.titl-heade {
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 35px;
+    font-weight: 700;
+    color: white;
+}
+
+
+.cont{
+    justify-content: center;
+    align-items: center;
+    margin-top: 5vh;
+    margin-left: 2vh;
+    margin-right: 2vh;
+}
+
+.cont-inpt{
+    margin-top: 3rem;
+    margin-left: 1.3rem;
+    margin-right: 1.3rem;
+}
+
+.cont-btn {
+    margin-top: 5vh;
+}
+
+.btn-log {
+    --background: yellow;
+    --color: rgb(0, 0, 0);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5.5vh;
+    margin-right: 5.5vh;
+
+    --border-radius: 50px;
+    --border-color: #000;
+    --border-style: solid;
+    --border-width: 0.29vh;
+
+    --padding-bottom: 1vh;
+}
+
+.rec-contr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2vh;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+h3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3vh;
+}

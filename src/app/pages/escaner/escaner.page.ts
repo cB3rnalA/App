@@ -14,7 +14,11 @@ export class EscanerPage implements OnInit {
     const alert = await this.alertController.create({
       header: 'Registro de clase',
       message: 'El registro de clase fue excitoso',
-      buttons: ['OK'],
+      buttons: [
+        {
+          text:'ok'
+        }
+      ],
     });
 
     await alert.present();

@@ -1,29 +1,38 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Inicio de sesion
-    </ion-title>
-  </ion-toolbar>
+<ion-header style="background: #8E9FF9">
+  <div class="cont-head">
+    <ion-toolbar class="new-background-color">
+      <ion-title class="titl-heade">
+        Asistapp
+      </ion-title>
+    </ion-toolbar>
+  </div>
 </ion-header>
 
 
 <ion-content>
-  <div style="padding: 20% 5%;">
-    <form #miFormulario="ngForm" (ngSubmit)="onSubmit()">
-      <ion-item lines="full" class="inputs">
-        <ion-label position="floating">correo</ion-label>
-        <ion-input  type="email" required name="email" [(ngModel)]="usuario.username"></ion-input>
-      </ion-item>
-      <ion-item lines="full" class="inputs" >
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input  type="password" required name="password" [(ngModel)]="usuario.password"></ion-input>
-      </ion-item>
-      <ion-row>
-        <ion-col>
-          <ion-button type="submit"  shape="round" expand="block" [disabled]="miFormulario.invalid">Login</ion-button>
-          <a (click)="navegar('valid-data-rec')" class="small-text">Recuperar contraseña</a>
-        </ion-col>
-      </ion-row><!-- [disabled]="loginForm.invalid" -->
-    </form>
+  <div class="cont">
+    <ion-card>
+      <h3><b>Inicio de Sesion</b></h3>
+      <div class="cont-inpt">
+        <form #miFormulario="ngForm" (ngSubmit)="onSubmit()">
+          <ion-item lines="full" class="inputs">
+            <ion-label position="floating" style="font-size: 2vh;">Correo</ion-label>
+            <ion-input type="email" required name="email" [(ngModel)]="usuario.username"></ion-input>
+          </ion-item>
+          <ion-item lines="full" class="inputs">
+            <ion-label position="floating" style="font-size: 2vh;">Contraseña</ion-label>
+            <ion-input type="password" required name="password" [(ngModel)]="usuario.password"></ion-input>
+          </ion-item>
+          <ion-row>
+            <ion-col class="cont-btn">
+              <ion-button type="submit" class="btn-log" [disabled]="miFormulario.invalid"
+                style="font-size: 2vh; color: rgb(0, 0, 0);"><b>Login</b></ion-button>
+              <br>
+              <a (click)="navegar('valid-data-rec')" class="small-text rec-contr">Recuperar contraseña</a>
+            </ion-col>
+          </ion-row><!-- [disabled]="loginForm.invalid" -->
+        </form>
+      </div>
+    </ion-card>
   </div>
 </ion-content>

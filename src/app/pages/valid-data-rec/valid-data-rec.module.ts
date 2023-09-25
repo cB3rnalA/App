@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ValidDataRecPageRoutingModule } from './valid-data-rec-routing.module';
 
 import { ValidDataRecPage } from './valid-data-rec.page';
+import { ComponentsModule } from "../../components/components.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ValidDataRecPageRoutingModule
-  ],
-  declarations: [ValidDataRecPage]
+    declarations: [ValidDataRecPage],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ValidDataRecPageRoutingModule,
+        ComponentsModule
+    ]
 })
 export class ValidDataRecPageModule {}

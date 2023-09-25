@@ -9,12 +9,12 @@ import { RecContraPageRoutingModule } from './rec-contra-routing.module';
 import { RecContraPage } from './rec-contra.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    RecContraPageRoutingModule
-  ],
-  declarations: [RecContraPage]
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        RecContraPageRoutingModule
+    ],
+    declarations: [RecContraPage]
 })
-export class RecContraPageModule {}
+export class RecContraPageModule { }

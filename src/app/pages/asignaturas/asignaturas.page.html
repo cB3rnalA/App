@@ -80,6 +80,11 @@
       </div>
     </ion-accordion>
   </ion-accordion-group>
+  <ion-list *ngFor="let item of collection" >
+    <ion-item>
+      <ion-label>Elemento {{item}}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
 
 <app-footer></app-footer>

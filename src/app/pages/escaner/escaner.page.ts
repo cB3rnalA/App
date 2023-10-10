@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-escaner',
@@ -8,7 +9,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class EscanerPage implements OnInit {
 
-  constructor(private alertController: AlertController) { }
+  constructor(private alertController: AlertController,private router:Router) { }
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -22,6 +23,7 @@ export class EscanerPage implements OnInit {
     });
 
     await alert.present();
+    this.router.navigate(['home']);
   }
 
   ngOnInit() {

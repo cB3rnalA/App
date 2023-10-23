@@ -46,9 +46,10 @@ const routes: Routes = [
   {
     path: 'datos-person',
     loadChildren: () => import('./pages/datos-person/datos-person.module').then( m => m.DatosPersonPageModule)
-  },  {
+  },
+  {
     path: 'registrarce',
-    loadChildren: () => import('./pages/registrarce/registrarce.module').then( m => m.RegistrarcePageModule)
+    loadChildren: () => import('./pages/registrarse/registrarce.module').then( m => m.RegistrarcePageModule)
   },
 
 

@@ -46,7 +46,19 @@ const routes: Routes = [
   {
     path: 'datos-person',
     loadChildren: () => import('./pages/datos-person/datos-person.module').then( m => m.DatosPersonPageModule)
+  },  {
+    path: 'profe',
+    loadChildren: () => import('./pages/profe/profe.module').then( m => m.ProfePageModule)
   },
+  {
+    path: 'profe-qr',
+    loadChildren: () => import('./pages/profe-qr/profe-qr.module').then( m => m.ProfeQrPageModule)
+  },
+  {
+    path: 'profe-sesion',
+    loadChildren: () => import('./pages/profe-sesion/profe-sesion.module').then( m => m.ProfeSesionPageModule)
+  },
+
 
   
 ];

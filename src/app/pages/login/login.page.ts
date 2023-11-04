@@ -27,7 +27,12 @@ usuario={
 
   onSubmit(){
     if (this.usuario.username=="correo" && this.usuario.password=="1234"){
+      console.log('alumno');
       this.router.navigate(['/home'])
+    }
+    else if (this.usuario.username=="profe" && this.usuario.password=="4321"){
+      console.log('profesor');
+      this.router.navigate(['/profe'])
     }
     else{
       
@@ -47,6 +52,5 @@ usuario={
 
     await alert.present();
 
- 
   }
 }

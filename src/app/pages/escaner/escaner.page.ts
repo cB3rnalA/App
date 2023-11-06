@@ -3,6 +3,8 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ServicioUbicacionService } from 'src/app/services/servicio-ubicacion.service';
 import { Categoria,Categorias } from 'src/app/interfaces/comidas';
+import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
+
 
 @Component({
   selector: 'app-escaner',
@@ -11,6 +13,26 @@ import { Categoria,Categorias } from 'src/app/interfaces/comidas';
 })
 export class EscanerPage implements OnInit {
 
+  texto:string=''
+  constructor(private barcodescanner:BarcodeScanner){
+
+  }
+
+  scan(){
+    this.barcodescanner.scan().then(barcodedata=>{
+      console.log("escaneando ...",barcodedata);
+      this.texto=(JSON.stringify(barcodedata));
+    }).catch(err=>{
+      console.log("Error al escanear"); 
+    })
+  }
+
+  ngOnInit() {
+    
+  }
+
+
+  /* 
   categorias:Categoria[]=[];
 
   constructor(private alertController: AlertController,private router:Router, private servicioubicacion:ServicioUbicacionService) { }
@@ -37,6 +59,6 @@ export class EscanerPage implements OnInit {
       console.log(this.categorias);
     
     });
-  }
+  } */
 
 }

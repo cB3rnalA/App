@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -8,17 +10,49 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  loginForm : FormGroup
 
-  
-usuario={
-  username:'',
-  password:''
+  usuario={
+  nombre:'',
+  contrasena:''
 }
 
   constructor(private router:Router,
-    private alertController:AlertController) { }
+    private alertController:AlertController , public formBuilder:FormBuilder, public  loadingCtrl: LoadingController, public authService : AuthenticationService) { }
   
   ngOnInit() {
+    this.loginForm = this.formBuilder.group({
+      correo :['', [
+        Validators.required,
+        Validators.email,
+        Validators.pattern("[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$")]],
+      contrasena :['', [
+        Validators.required,
+        Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]]
+    })
+  }
+  get errorControl(){
+    return this.loginForm?.controls;
+  }
+
+  async signUp(){
+    const loading = await this.loadingCtrl.create();
+    await loading.present();
+    if(this.loginForm?.valid){
+      const user = await this.authService.loginUser(this.loginForm.value.correo,this.loginForm.value.contrasena).catch((error)=>{
+        console.log(error);
+        console.log(this.loginForm.value.contrasena);
+        loading.dismiss()
+      })
+
+      if(user){
+        loading.dismiss()
+        this.router.navigate(['/home'])
+      } else {
+        console.log(this.loginForm.value.contrasena);
+        console.log('providew correct values')
+      }
+    }
   }
   
   navegar(ruta:String){
@@ -26,7 +60,7 @@ usuario={
   }
 
   onSubmit(){
-    if (this.usuario.username=="correo" && this.usuario.password=="1234"){
+    if (this.usuario.nombre=="correo" && this.usuario.contrasena=="1234"){
       this.router.navigate(['/home'])
     }
     else{

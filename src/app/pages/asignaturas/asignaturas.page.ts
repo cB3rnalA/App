@@ -26,5 +26,5 @@ export class AsignaturasPage implements OnInit {
         `Expanded: ${selectedValue === undefined ? 'None' : ev.detail.value} | Collapsed: ${collapsedItems.join(', ')}`
       );
     };
-    collection=['nombre1' ,'nombre2'];
+    collection=['nombre1' ,'nombre2','nombre2','nombre2','nombre2','nombre2','nombre2','nombre2','nombre2','nombre2','nombre2','nombre2','nombre2','nombre2'];
 }

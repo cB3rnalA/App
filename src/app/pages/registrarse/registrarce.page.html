@@ -10,19 +10,43 @@
 <ion-content class="ion-padding">
   <h1>Registro</h1>
 
-  <form #frmRegistro="ngForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="regForm" novalidate>
     <ion-item>
       <ion-label position="floating">nombre </ion-label>
-      <ion-input required name="nombre" type="text" [(ngModel)]="persona.nombre"></ion-input>
+      <ion-input name="nombre" type="text" formControlName="nombre"></ion-input>
     </ion-item>
+    <div *ngIf="this.regForm.controls?.['nombre'] && this.regForm.controls?.['nombre'].invalid">
+      <ion-text>
+        El nombre es requerido
+      </ion-text>
+    </div>
+    <br>
     <ion-item>
-      <ion-label position="floating">apellido </ion-label>
-      <ion-input required name="apellido" type="text"[(ngModel)]="persona.apellido"></ion-input>
-    </ion-item><ion-item>
-      <ion-label position="floating">direccion </ion-label>
-      <ion-input required name="direccion" type="text"[(ngModel)]="persona.descripcion"></ion-input>
+      <ion-label position="floating">correo </ion-label>
+      <ion-input name="correo" type="text" formControlName="correo"></ion-input>
     </ion-item>
-    <ion-button block color="primary" type="submit" [disabled]="frmRegistro.invalid">
+    <div *ngIf="this.regForm.controls?.['correo'] && this.regForm.controls?.['correo'].invalid">
+      <ion-text> <!-- *ngIf="errorControl.correo.errors?.required" --> <!-- No funciona el ngIf -->
+        El Correo es requerido
+      </ion-text>
+    </div>
+    <br>
+    <ion-item>
+      <ion-label position="floating">contraseña </ion-label>
+      <ion-input name="contrasena" type="password" formControlName="contrasena"></ion-input>
+    </ion-item>
+    <div *ngIf="this.regForm.controls?.['contrasena'] && this.regForm.controls?.['contrasena'].invalid">
+      <ion-text> <!-- *ngIf="regForm.controls['contrasena'].hasError('pattern')" -->  <!-- No funciona el ngIf -->
+        La contraseña es invalida
+      </ion-text>
+    </div>
+    <br>
+
+    <!-- <ion-item>
+      <ion-label position="floating">contraseña </ion-label>
+      <ion-input required name="contrasena2" type="password" ></ion-input>
+    </ion-item> -->
+    <ion-button block color="primary" (click)="signUp()" >
       Login
     </ion-button>
   </form>

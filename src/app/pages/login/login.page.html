@@ -14,18 +14,28 @@
     <ion-card>
       <h3><b>Inicio de Sesion</b></h3>
       <div class="cont-inpt">
-        <form #miFormulario="ngForm" (ngSubmit)="onSubmit()">
-          <ion-item lines="full" class="inputs">
-            <ion-label position="floating" style="font-size: 2vh;">Correo</ion-label>
-            <ion-input type="email" required name="email" [(ngModel)]="usuario.username"></ion-input>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <ion-item>
+            <ion-label position="floating">correo </ion-label>
+            <ion-input name="correo" type="text" formControlName="correo"></ion-input>
           </ion-item>
-          <ion-item lines="full" class="inputs">
-            <ion-label position="floating" style="font-size: 2vh;">Contraseña</ion-label>
-            <ion-input type="password" required name="password" [(ngModel)]="usuario.password"></ion-input>
+          <div *ngIf="this.loginForm.controls?.['correo'] && this.loginForm.controls?.['correo'].invalid">
+            <ion-text> <!-- *ngIf="errorControl.correo.errors?.required" --> <!-- No funciona el ngIf -->
+              El Correo es requerido
+            </ion-text>
+          </div>
+          <ion-item>
+            <ion-label position="floating">contraseña </ion-label>
+            <ion-input name="contrasena" type="password" formControlName="contrasena"></ion-input>
           </ion-item>
+          <div *ngIf="this.loginForm.controls?.['contrasena'] && this.loginForm.controls?.['contrasena'].invalid">
+            <ion-text> <!-- *ngIf="regForm.controls['contrasena'].hasError('pattern')" -->  <!-- No funciona el ngIf -->
+              La contraseña es invalida
+            </ion-text>
+          </div>
           <ion-row>
             <ion-col class="cont-btn">
-              <ion-button type="submit" class="btn-log" [disabled]="miFormulario.invalid"
+              <ion-button (click)="signUp()" class="btn-log" 
                 style="font-size: 2vh; color: rgb(0, 0, 0);"><b>Login</b></ion-button>
               <br>
               <a (click)="navegar('valid-data-rec')" class="small-text rec-contr">Recuperar contraseña</a>

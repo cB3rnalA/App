@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ValidDataRecPageRoutingModule } from './valid-data-rec-routing.module';
+import { ProfePageRoutingModule } from './profe-routing.module';
 
-import { ValidDataRecPage } from './valid-data-rec.page';
+import { ProfePage } from './profe.page';
 import { ComponentsModule } from "../../components/components.module";
 
 @NgModule({
-    declarations: [ValidDataRecPage],
+    declarations: [ProfePage],
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        ValidDataRecPageRoutingModule,
+        ProfePageRoutingModule,
         ComponentsModule
     ]
 })
-export class ValidDataRecPageModule {}
+export class ProfePageModule {}

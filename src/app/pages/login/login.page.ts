@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { NavigationExtras, Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -30,6 +33,9 @@ export class LoginPage implements OnInit {
         Validators.required,
         Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]]
     })
+  usuario = {
+    username: '',
+    password: ''
   }
   get errorControl(){
     return this.loginForm?.controls;
@@ -57,30 +63,59 @@ export class LoginPage implements OnInit {
   
   navegar(ruta:String){
     this.router.navigate(['/'+ruta]);
+
+  constructor(private router: Router, private alertController: AlertController, private storage: Storage) { }
+
+  ngOnInit() {}
+
+  navegar(ruta: String) {
+    this.router.navigate(['/' + ruta]);
   }
 
   onSubmit(){
     if (this.usuario.nombre=="correo" && this.usuario.contrasena=="1234"){
       this.router.navigate(['/home'])
-    }
-    else{
-      
-      this.presentAlert()
+  onSubmit() {
+    if (this.usuario.username == "correo" && this.usuario.password == "1234") {
+      console.log('alumno');
+      this.activar(1);
+      //console.log("Listo!!!!");
+      let ext: NavigationExtras = {
+        state: {
+          saludo: "Hola mundo!!!",
+        }
+      }
+      this.router.navigate(['/home'], ext)
+      //console.log(ext)
     }
 
+    else if (this.usuario.username == "profe" && this.usuario.password == "4321") {
+      console.log('profesor');
+      this.activar(1);
+      this.router.navigate(['/profe'])
+    }
+    else {
+      this.presentAlert()
+      console.log("No autorizado");
+      this.activar(0);
+      this.router.navigate(['/login']);
+    }
   }
+
+  async activar(valor: Number) {
+    await this.storage.set("sesion", valor);
+  }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Alerta',
       subHeader: 'Información',
       message: "Usuario y/o password incorrectos",
       buttons: ['OK'],
-      backdropDismiss:false,
-      
+      backdropDismiss: false,
+
     });
-
     await alert.present();
-
- 
   }
+
 }

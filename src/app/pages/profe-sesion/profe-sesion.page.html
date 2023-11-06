@@ -1,0 +1,36 @@
+<ion-header style="background: #8E9FF9">
+  <div class="cont-head">
+    <ion-toolbar class="new-background-color">
+      <ion-title class="titl-heade">
+        Settings
+      </ion-title>
+    </ion-toolbar>
+  </div>
+</ion-header>
+
+<ion-content>
+  <div>
+    <div class="cont-opcion">
+      <ion-card>
+        <ion-item button (click)="navegar('login')" detail="true">
+          <ion-label>
+            <h3>Cerrar Sesion</h3>
+          </ion-label>
+        </ion-item>
+      </ion-card>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar class="myColor">
+    <div class="cont-footer">
+      <ion-button (click)="navegar('profe')" class="foot-btn" fill="clear" expand="large">
+        <ion-icon slot="icon-only" name="home"></ion-icon>
+      </ion-button>
+      <ion-button (click)="navegar('profe-sesion')" class="foot-btn" fill="clear" expand="large">
+        <ion-icon name="settings" slot="icon-only"></ion-icon>
+      </ion-button>
+    </div>
+  </ion-toolbar>
+</ion-footer>

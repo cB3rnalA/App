@@ -68,23 +68,17 @@ export class LoginPage implements OnInit {
     if (this.usuario.nombre == "correo" && this.usuario.contrasena == "1234") {
       console.log('alumno');
       this.activar(1);
-      //console.log("Listo!!!!");
-      let ext: NavigationExtras = {
-        state: {
-          saludo: "Hola mundo!!!",
-        }
-      }
-      this.router.navigate(['/home'], ext)
-      //console.log(ext)
-    }else if (this.usuario.nombre == "profe" && this.usuario.contrasena == "4321") {
+      this.router.navigate(['/home'])
+
+    }
+    else if (this.usuario.username == "profe" && this.usuario.password == "4321") {
       console.log('profesor');
-      this.activar(1);
+      this.activar(2);
       this.router.navigate(['/profe'])
     }else {
       this.presentAlert()
       console.log("No autorizado");
       this.activar(0);
-      this.router.navigate(['/login']);
     }
   }
 

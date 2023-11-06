@@ -18,11 +18,18 @@ export class ControlGuard implements CanActivate {
       return this.permitirAcesso();
     }
   
-  
     async permitirAcesso() {
       if (await this.storage.get("sesion") == 1) {
+        console.log("true 1");
         return true;
       }
+      else if(await this.storage.get("sesion") == 2){
+        console.log("true 2");
+        return true;
+      }
+      else{
+        console.log("false");
         return false;
       }
+    }
   }

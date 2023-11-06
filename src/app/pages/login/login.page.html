@@ -14,21 +14,25 @@
     <ion-card>
       <h3><b>Inicio de Sesion</b></h3>
       <div class="cont-inpt">
-        <form #miFormulario="ngForm" (ngSubmit)="onSubmit()">
-          <ion-item lines="full" class="inputs">
-            <ion-label position="floating" style="font-size: 2vh;">Correo</ion-label>
-            <ion-input type="email" required name="email" [(ngModel)]="usuario.username"></ion-input>
+        <form [formGroup]="loginForm" (ngSubmit)="signUp()">
+          <ion-item>
+            <ion-label position="floating">correo </ion-label>
+            <ion-input name="correo" type="text" formControlName="correo"></ion-input>
           </ion-item>
-          <ion-item lines="full" class="inputs">
-            <ion-label position="floating" style="font-size: 2vh;">Contraseña</ion-label>
-            <ion-input type="password" required name="password" [(ngModel)]="usuario.password"></ion-input>
+          
+          <ion-item>
+            <ion-label position="floating">contraseña </ion-label>
+            <ion-input name="contrasena" type="password" formControlName="contrasena"></ion-input>
           </ion-item>
+          
           <ion-row>
             <ion-col class="cont-btn">
-              <ion-button type="submit" class="btn-log" [disabled]="miFormulario.invalid"
-                style="font-size: 2.2vh; color: rgb(0, 0, 0);"><b>Login</b></ion-button>
+              <ion-button (click)="signUp()" class="btn-log" 
+                style="font-size: 2vh; color: rgb(0, 0, 0);"><b>Login</b></ion-button>
               <br>
               <a (click)="navegar('valid-data-rec')" class="small-text rec-contr">Recuperar contraseña</a>
+              <br>
+              <a (click)="navegar('registrarce')" class="small-text rec-contr">Registrarce</a>
             </ion-col>
           </ion-row><!-- [disabled]="loginForm.invalid" -->
         </form>

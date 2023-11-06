@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-rec-contra',
@@ -7,11 +8,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./rec-contra.page.scss'],
 })
 export class RecContraPage implements OnInit {
-
-  constructor(private router:Router) { }
+  correo :any
+  constructor(private router:Router, public authService : AuthenticationService) { }
 
   ngOnInit() {
   }
+
+  async resetPassword(){
+    this.authService.resetPassword(this.correo)
+  }
+
   navegar(ruta:String){
     console.log("antes");
     this.router.navigate(['/'+ruta]);

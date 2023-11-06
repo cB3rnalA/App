@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./datos-person.page.scss'],
 })
 export class DatosPersonPage  {
-
+  user:any
   constructor(private router:Router) {}
 
   navegar(ruta:String){

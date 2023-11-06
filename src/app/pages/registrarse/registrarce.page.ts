@@ -1,0 +1,72 @@
+import { Component, OnInit } from '@angular/core';
+import { Persona } from 'src/app/interfaces/persona';
+import { Storage } from '@ionic/storage-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { LoadingController } from '@ionic/angular';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { Router } from '@angular/router';
+
+
+@Component({
+  selector: 'app-registrarce',
+  templateUrl: './registrarce.page.html',
+  styleUrls: ['./registrarce.page.scss'],
+})
+export class RegistrarcePage implements OnInit {
+  regForm : FormGroup;
+
+  p/* ersona:Persona={
+    nombre:'',
+    correo:'',
+    contrasena:'',
+  } */
+
+  constructor(private storage: Storage, public formBuilder:FormBuilder, public  loadingCtrl: LoadingController, public authService : AuthenticationService,public router : Router) { }
+
+  ngOnInit() {
+    this.regForm = this.formBuilder.group({
+        nombre :['',[Validators.required]],
+        correo :['', [
+          Validators.required,
+          Validators.email,
+          Validators.pattern("[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$")]],
+        contrasena :['', [
+          Validators.required,
+          Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]]
+      })
+    }
+  
+  get errorControl(){
+    return this.regForm?.controls;
+  }
+
+  async signUp(){
+    const loading = await this.loadingCtrl.create();
+    await loading.present();
+    if(this.regForm?.valid){
+      const user = await this.authService.registerUser(this.regForm.value.correo,this.regForm.value.contrasena).catch((error)=>{
+        console.log(error);
+        console.log(this.regForm.value.contrasena);
+        loading.dismiss()
+      })
+
+      if(user){
+        loading.dismiss()
+        this.router.navigate(['/home'])
+      } else {
+        console.log(this.regForm.value.contrasena);
+        console.log('providew correct values')
+      }
+    }
+  }
+
+  /* onSubmit(){
+    console.log(this.persona);
+    this.guardar();
+  }  */
+
+
+ /*  async guardar(){
+    await this.storage.set(this.persona.nombre,this.persona);
+  } */
+}

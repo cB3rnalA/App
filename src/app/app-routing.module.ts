@@ -70,6 +70,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/profe-sesion/profe-sesion.module').then( m => m.ProfeSesionPageModule),
     canActivate:[ControlGuard]
   },
+  {
+    path: 'registrarce',
+    loadChildren: () => import('./pages/registrarse/registrarce.module').then( m => m.RegistrarcePageModule)
+  },
 
 
   

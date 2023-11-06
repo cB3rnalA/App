@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Storage } from '@ionic/storage-angular';
 
 @Component({
   selector: 'app-login',
@@ -9,48 +10,61 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  
-usuario={
-  username:'',
-  password:''
-}
 
-  constructor(private router:Router,
-    private alertController:AlertController) { }
-  
-  ngOnInit() {
-  }
-  
-  navegar(ruta:String){
-    this.router.navigate(['/'+ruta]);
+  usuario = {
+    username: '',
+    password: ''
   }
 
-  onSubmit(){
-    if (this.usuario.username=="correo" && this.usuario.password=="1234"){
+  constructor(private router: Router, private alertController: AlertController, private storage: Storage) { }
+
+  ngOnInit() {}
+
+  navegar(ruta: String) {
+    this.router.navigate(['/' + ruta]);
+  }
+
+  onSubmit() {
+    if (this.usuario.username == "correo" && this.usuario.password == "1234") {
       console.log('alumno');
-      this.router.navigate(['/home'])
+      this.activar(1);
+      //console.log("Listo!!!!");
+      let ext: NavigationExtras = {
+        state: {
+          saludo: "Hola mundo!!!",
+        }
+      }
+      this.router.navigate(['/home'], ext)
+      //console.log(ext)
     }
-    else if (this.usuario.username=="profe" && this.usuario.password=="4321"){
+
+    else if (this.usuario.username == "profe" && this.usuario.password == "4321") {
       console.log('profesor');
+      this.activar(1);
       this.router.navigate(['/profe'])
     }
-    else{
-      
+    else {
       this.presentAlert()
+      console.log("No autorizado");
+      this.activar(0);
+      this.router.navigate(['/login']);
     }
-
   }
+
+  async activar(valor: Number) {
+    await this.storage.set("sesion", valor);
+  }
+
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Alerta',
       subHeader: 'Información',
       message: "Usuario y/o password incorrectos",
       buttons: ['OK'],
-      backdropDismiss:false,
-      
+      backdropDismiss: false,
+
     });
-
     await alert.present();
-
   }
+
 }

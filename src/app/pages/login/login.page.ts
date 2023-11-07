@@ -71,7 +71,6 @@ export class LoginPage implements OnInit {
       console.log('alumno');
       this.activar(1);
       this.router.navigate(['/home'])
-
     }
     else if (this.usuario.nombre == "profe" && this.usuario.contrasena == "4321") {
       console.log('profesor');
@@ -85,7 +84,7 @@ export class LoginPage implements OnInit {
   }
 
   async activar(valor: Number) {
-    await this.storage.set("sesion", valor);
+    await this.storage.set("sesion", valor);//set para guardar
   }
 
   async presentAlert() {

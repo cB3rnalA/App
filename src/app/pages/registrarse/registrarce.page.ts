@@ -15,11 +15,11 @@ import { Router } from '@angular/router';
 export class RegistrarcePage implements OnInit {
   regForm : FormGroup;
 
-  p/* ersona:Persona={
+  persona:Persona={
     nombre:'',
     correo:'',
     contrasena:'',
-  } */
+  }
 
   constructor(private storage: Storage, public formBuilder:FormBuilder, public  loadingCtrl: LoadingController, public authService : AuthenticationService,public router : Router) { }
 
@@ -29,10 +29,11 @@ export class RegistrarcePage implements OnInit {
         correo :['', [
           Validators.required,
           Validators.email,
-          Validators.pattern("[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$")]],
+          Validators.pattern(/[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/)]],
         contrasena :['', [
           Validators.required,
-          Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}")]]
+          Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])/),
+          Validators.minLength(8)]]
       })
     }
   
@@ -52,6 +53,7 @@ export class RegistrarcePage implements OnInit {
 
       if(user){
         loading.dismiss()
+        this.wa();
         this.router.navigate(['/home'])
       } else {
         console.log(this.regForm.value.contrasena);
@@ -60,13 +62,19 @@ export class RegistrarcePage implements OnInit {
     }
   }
 
-  /* onSubmit(){
+  onSubmit(){
     console.log(this.persona);
     this.guardar();
-  }  */
+  } 
 
+  wa(){
+    console.log("guardando")
+    this.guardar();
+    console.log("guardao")
+  }
 
- /*  async guardar(){
-    await this.storage.set(this.persona.nombre,this.persona);
-  } */
+  async guardar(){
+    await this.storage.set(this.regForm.value.nombre,this.regForm.value.user);
+  }
+
 }

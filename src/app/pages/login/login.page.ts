@@ -48,10 +48,12 @@ export class LoginPage implements OnInit {
         loading.dismiss()
         console.log("hacia home")
         this.router.navigate(['/home'])
+        this.activar(1);
       } else {
         console.log(this.loginForm.value.contrasena);
         console.log('providew correct values')
         this.presentAlert();
+        this.activar(0);
       }
     }
     else{
@@ -71,7 +73,7 @@ export class LoginPage implements OnInit {
       this.router.navigate(['/home'])
 
     }
-    else if (this.usuario.username == "profe" && this.usuario.password == "4321") {
+    else if (this.usuario.nombre == "profe" && this.usuario.contrasena == "4321") {
       console.log('profesor');
       this.activar(2);
       this.router.navigate(['/profe'])

@@ -15,20 +15,25 @@
     color: white;
 }
 
+ion-content.fond{
+    --ion-background-color: #8360c3;
+    /* fallback for old browsers */
+    --ion-background-color: -webkit-linear-gradient(to right, #2ebf91, #8360c3);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --ion-background-color: linear-gradient(to right, #2ebf91, #8360c3);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
 
-.cont{
+.cont {
     justify-content: center;
     align-items: center;
     margin-top: 5vh;
     margin-left: 2vh;
     margin-right: 2vh;
 
-
 }
 
-
-
-.cont-inpt{
+.cont-inpt {
     margin-top: 3rem;
     margin-left: 1.3rem;
     margin-right: 1.3rem;
@@ -36,6 +41,16 @@
 
 .cont-btn {
     margin-top: 5vh;
+}
+
+ion-card{
+    --ion-background-color: white;
+    --color: rgb(0, 0, 0);
+
+    border: #000;
+    border-radius: 5%;
+    border-style: solid;
+    border-width: 0.29vh;
 }
 
 .btn-log {
@@ -65,7 +80,7 @@
     margin-top: 1rem;
 }
 
-h3{
+h3 {
     display: flex;
     justify-content: center;
     align-items: center;

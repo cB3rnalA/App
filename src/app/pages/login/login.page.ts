@@ -53,6 +53,7 @@ export class LoginPage implements OnInit {
         console.log(this.loginForm.value.contrasena);
         console.log('providew correct values')
         this.presentAlert();
+        this.activar(0);
       }
     }
     else{
@@ -65,6 +66,7 @@ export class LoginPage implements OnInit {
     this.router.navigate(['/'+ruta]);
   }
 
+  /*
   onSubmit() {
     if (this.usuario.nombre == "correo" && this.usuario.contrasena == "1234") {
       console.log('alumno');
@@ -81,6 +83,7 @@ export class LoginPage implements OnInit {
       this.activar(0);
     }
   }
+*/
 
   async activar(valor: Number) {
     await this.storage.set("sesion", valor);//set para guardar

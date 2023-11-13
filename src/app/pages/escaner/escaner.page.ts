@@ -8,7 +8,6 @@ import { Storage } from '@ionic/storage-angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { Persona } from 'src/app/interfaces/persona';
 
-
 @Component({
   selector: 'app-escaner',
   templateUrl: './escaner.page.html',
@@ -47,9 +46,7 @@ export class EscanerPage implements OnInit {
   }
 
   ngOnInit() {
-    
   }
-
 
   /* 
   categorias:Categoria[]=[];

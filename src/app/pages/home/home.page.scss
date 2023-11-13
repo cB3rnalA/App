@@ -25,6 +25,22 @@ ion-content {
 
 */
 
+ion-content.fond {
+  --ion-background-color: #E0EAFC;
+  /* fallback for old browsers */
+  --ion-background-color: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+  /* Chrome 10-25, Safari 5.1-6 */
+  --ion-background-color: linear-gradient(to right, #CFDEF3, #E0EAFC);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+.sup-btn{
+  margin-bottom: 2.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
 .centered-button {
   display: flex;
   justify-content: center;
@@ -33,18 +49,19 @@ ion-content {
   /* Esto asegura que el contenedor ocupe toda la altura de la pantalla */
 }
 
-.cont-head{
+.cont-head {
   margin-top: 4vh;
   margin-bottom: 3vh;
 }
 
-.new-background-color{
+.new-background-color {
   --background: #8E9FF9;
 }
 
-.titl-heade{
+.titl-heade {
+  margin: 1rem;
   text-align: center;
-  font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif ;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   font-size: 35px;
   font-weight: 700;
   color: white;
@@ -54,17 +71,18 @@ ion-content {
   margin-top: 80px;
   margin-bottom: 60px;
 }
+
 .cont-general {
-  margin-top: 20vh;
+  margin-top: 12vh;
 }
+
 .inic {
   font-size: 1.5rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .registro-btn {
-  margin-bottom: 8%;
+  margin-bottom: 15%;
   align-items: center;
   justify-content: center;
 }
-

@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProfeQrPageRoutingModule } from './profe-qr-routing.module';
+import { CerrarSesionPageRoutingModule } from './cerrar-sesion-routing.module';
 
-import { ProfeQrPage } from './profe-qr.page';
+import { CerrarSesionPage } from './cerrar-sesion.page';
 import { ComponentsModule } from "../../components/components.module";
 
 @NgModule({
-    declarations: [ProfeQrPage],
+    declarations: [CerrarSesionPage],
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        ProfeQrPageRoutingModule,
+        CerrarSesionPageRoutingModule,
         ComponentsModule
     ]
 })
-export class ProfeQrPageModule {}
+export class CerrarSesionPageModule {}

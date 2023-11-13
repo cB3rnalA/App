@@ -17,4 +17,26 @@ export class PerfilPage {
     this.router.navigate(['/'+ruta]);
   }
 
+
+  async logout(){
+    this.authService.signOut().then(()=>{
+      this.router.navigate(['/login'])
+    })
+  }
+
+  obtenerNombreStorage(){
+    let nom = this.obtenerCorreoFB();
+    console.log(nom);
+  }
+  async obtenerCorreoFB(){
+    try {
+      const profile = await this.authService.getProfile();
+      const correo = profile.email;
+      console.log('correo obtenido:', correo);
+      return correo;
+    }catch(error) {
+      console.error('Error al obtener el perfil:', error);
+      throw error;
+    }
+  }
 }

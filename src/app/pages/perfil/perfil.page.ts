@@ -8,9 +8,14 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage {
-  user:any
+  user:any;
+  nom: any;
   constructor(private router:Router, public authService : AuthenticationService) {
     this.user = authService.getProfile()
+  }
+  ngOnInit() {
+    this.obtNom();
+    console.log(this.nom);
   }
 
   navegar(ruta:String){
@@ -24,9 +29,14 @@ export class PerfilPage {
     })
   }
 
+  async obtNom(){
+    this.nom = await this.authService.getProfile();
+    
+  }
+
   obtenerNombreStorage(){
-    let nom = this.obtenerCorreoFB();
-    console.log(nom);
+    let corre = this.obtenerCorreoFB();
+    console.log(corre);
   }
   async obtenerCorreoFB(){
     try {

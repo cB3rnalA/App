@@ -58,7 +58,11 @@ const routes: Routes = [
   {
     path: 'registrarce',
     loadChildren: () => import('./pages/registrarse/registrarce.module').then( m => m.RegistrarcePageModule)
+  },  {
+    path: 'cerrar-sesion',
+    loadChildren: () => import('./pages/cerrar-sesion/cerrar-sesion.module').then( m => m.CerrarSesionPageModule)
   },
+
 
 
   

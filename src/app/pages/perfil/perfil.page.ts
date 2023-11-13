@@ -17,9 +17,4 @@ export class PerfilPage {
     this.router.navigate(['/'+ruta]);
   }
 
-  async logout(){
-    this.authService.signOut().then(()=>{
-      this.router.navigate(['/login'])
-    })
-  }
 }

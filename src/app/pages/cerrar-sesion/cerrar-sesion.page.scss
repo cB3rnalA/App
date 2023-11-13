@@ -1,0 +1,15 @@
+.sup-btn {
+    margin-top: 10%;
+    align-items: center;
+    justify-content: center;
+}
+
+ion-content.fond {
+    --ion-background-color: #E0EAFC;
+    /* fallback for old browsers */
+    --ion-background-color: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
+    /* Chrome 10-25, Safari 5.1-6 */
+    --ion-background-color: linear-gradient(to right, #CFDEF3, #E0EAFC);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}

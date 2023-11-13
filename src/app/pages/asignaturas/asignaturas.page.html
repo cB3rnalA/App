@@ -94,7 +94,7 @@
   </ion-accordion-group> -->
   <ion-list *ngFor="let item of collection">
     <ion-accordion-group (ionChange)="accordionGroupChange($event)">
-      <ion-accordion value="first">
+      <ion-accordion value="{{item}}">
         <ion-item slot="header" color="light">
           <ion-label>{{item}}</ion-label>
         </ion-item>

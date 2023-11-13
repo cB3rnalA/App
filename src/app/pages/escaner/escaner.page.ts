@@ -48,9 +48,6 @@ export class EscanerPage implements OnInit {
   ngOnInit() {
   }
 
-  async escaneado(valor: string) {
-    await this.storage.set("escaneado", valor);
-  }
   /* 
   categorias:Categoria[]=[];
 

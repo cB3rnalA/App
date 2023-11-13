@@ -2,7 +2,7 @@
 
 
 <ion-content>
-  <ion-accordion-group (ionChange)="accordionGroupChange($event)">
+  <!-- <ion-accordion-group (ionChange)="accordionGroupChange($event)">
     <ion-accordion value="first">
       <ion-item slot="header" color="light">
         <ion-label>Calidad De Software</ion-label>
@@ -15,11 +15,15 @@
           </ion-row>
           <ion-row>
             <ion-col size="8">Martes 12 de Septiembre</ion-col>
-            <ion-col size="4"><div>Presente</div></ion-col>
+            <ion-col size="4">
+              <div>Presente</div>
+            </ion-col>
           </ion-row>
           <ion-row style="color: red;">
             <ion-col size="8">Lunes 11 de Septiembre</ion-col>
-            <ion-col size="4"><div>Ausente</div></ion-col>
+            <ion-col size="4">
+              <div>Ausente</div>
+            </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="8">Martes 5 de Septiembre</ion-col>
@@ -28,7 +32,7 @@
         </ion-grid>
       </div>
     </ion-accordion>
-    
+
     <ion-accordion value="second">
       <ion-item slot="header" color="light">
         <ion-label>Arquitectura</ion-label>
@@ -41,11 +45,15 @@
           </ion-row>
           <ion-row>
             <ion-col size="8">Martes 12 de Septiembre</ion-col>
-            <ion-col size="4"><div>Presente</div></ion-col>
+            <ion-col size="4">
+              <div>Presente</div>
+            </ion-col>
           </ion-row>
           <ion-row style="color: red;">
             <ion-col size="8">Lunes 11 de Septiembre</ion-col>
-            <ion-col size="4"><div>Ausente</div></ion-col>
+            <ion-col size="4">
+              <div>Ausente</div>
+            </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="8">Martes 5 de Septiembre</ion-col>
@@ -66,11 +74,15 @@
           </ion-row>
           <ion-row>
             <ion-col size="8">Martes 12 de Septiembre</ion-col>
-            <ion-col size="4"><div>Presente</div></ion-col>
+            <ion-col size="4">
+              <div>Presente</div>
+            </ion-col>
           </ion-row>
           <ion-row style="color: red;">
             <ion-col size="8">Lunes 11 de Septiembre</ion-col>
-            <ion-col size="4"><div>Ausente</div></ion-col>
+            <ion-col size="4">
+              <div>Ausente</div>
+            </ion-col>
           </ion-row>
           <ion-row>
             <ion-col size="8">Martes 5 de Septiembre</ion-col>
@@ -79,11 +91,41 @@
         </ion-grid>
       </div>
     </ion-accordion>
-  </ion-accordion-group>
-  <ion-list *ngFor="let item of collection" >
-    <ion-item>
-      <ion-label>Elemento {{item}}</ion-label>
-    </ion-item>
+  </ion-accordion-group> -->
+  <ion-list *ngFor="let item of collection">
+    <ion-accordion-group (ionChange)="accordionGroupChange($event)">
+      <ion-accordion value="first">
+        <ion-item slot="header" color="light">
+          <ion-label>{{item}}</ion-label>
+        </ion-item>
+        <div class="ion-padding" slot="content">
+          <ion-grid>
+            <ion-row>
+              <ion-col size="8">Fecha</ion-col>
+              <ion-col size="4">Asistencia</ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="8">Martes 12 de Septiembre</ion-col>
+              <ion-col size="4">
+                <div>Presente</div>
+              </ion-col>
+            </ion-row>
+            <ion-row style="color: red;">
+              <ion-col size="8">Lunes 11 de Septiembre</ion-col>
+              <ion-col size="4">
+                <div>Ausente</div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="8">Martes 5 de Septiembre</ion-col>
+              <ion-col size="4">Presente</ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-accordion>
+    </ion-accordion-group>
+    <!--       <ion-label>Elemento {{item}}</ion-label> -->
+
   </ion-list>
 </ion-content>
 

@@ -15,7 +15,7 @@ import { Persona } from 'src/app/interfaces/persona';
 })
 export class EscanerPage implements OnInit {
   texto : string=''
-  constructor(private barcodescanner:BarcodeScanner,private storage: Storage, public authService : AuthenticationService){
+  constructor(private barcodescanner:BarcodeScanner,private storage: Storage, public authService : AuthenticationService, private router:Router){
   }
   
   async scan(){
@@ -24,6 +24,7 @@ export class EscanerPage implements OnInit {
     let cor = await this.obtenerCorreo()
     console.log( cor + val[0])
     this.storage.set(cor , val[0])//se guarda en el storage
+    this.navegar('asignaturas')
 
     /* this.barcodescanner.scan().then(barcodedata=>{
       console.log("escaneando ...",barcodedata);
@@ -46,6 +47,10 @@ export class EscanerPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  navegar(ruta:String){
+    this.router.navigate(['/'+ruta]);
   }
 
   /* 

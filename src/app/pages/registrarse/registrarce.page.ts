@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 export class RegistrarcePage implements OnInit {
   regForm : FormGroup;
 
+  dato: any;
+
   persona:Persona={
     nombre:'',
     correo:'',
@@ -53,7 +55,10 @@ export class RegistrarcePage implements OnInit {
 
       if(user){
         loading.dismiss()
+        this.authService.updateUser(this.regForm.value.nombre);
         this.wa();
+        const nom = (await this.authService.getProfile()).displayName
+        console.log(nom)
         this.router.navigate(['/home'])
       } else {
         console.log(this.regForm.value.contrasena);
@@ -65,7 +70,7 @@ export class RegistrarcePage implements OnInit {
   onSubmit(){
     console.log(this.persona);
     this.guardar();
-  } 
+  }
 
   wa(){
     console.log("guardando")
@@ -75,6 +80,7 @@ export class RegistrarcePage implements OnInit {
 
   async guardar(){
     await this.storage.set(this.regForm.value.nombre,this.regForm.value.user);
+    this.authService.enviarDatos(this.regForm);
   }
 
 }

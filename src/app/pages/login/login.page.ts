@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { NavigationExtras, Router } from '@angular/router';
@@ -11,24 +11,25 @@ import { Storage } from '@ionic/storage-angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  loginForm : FormGroup
 
   usuario={
   nombre:'',
   contrasena:''
 }
 
+  
+  loginForm = new FormGroup({
+  correo : new FormControl('', [ Validators.required, Validators.email]),
+  contrasena : new FormControl('', [ Validators.required])
+})
+  firebaseScv = inject(AuthenticationService)
+
   constructor(private router:Router,
     private alertController:AlertController , private storage: Storage, public formBuilder:FormBuilder, public  loadingCtrl: LoadingController, public authService : AuthenticationService) { }
   
-  ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      correo :['', [
-        Validators.required,
-        Validators.email]],
-      contrasena :['', [
-        Validators.required]]
-    })}
+    
+
+  ngOnInit() {}
 
   get errorControl(){
     return this.loginForm?.controls;

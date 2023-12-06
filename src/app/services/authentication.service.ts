@@ -1,13 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable,inject } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { getAuth, updateProfile } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
+
+  auth = inject(AngularFireAuth);
+
+  //=====================autenticacion=====================
+
+  //============acceder=============
+  signIn(user:User){
+    return signInWithEmailAndPassword(getAuth(),user.correo,user.contrasena);
+  }
 
   constructor(public ngFireAuth: AngularFireAuth, public Firestore: AngularFirestore) { }
 
@@ -36,6 +46,6 @@ export class AuthenticationService {
   }
 
   enviarDatos(dato : any){
-    return this.Firestore.collection('prueba').add(dato);
-  }//prueba es el nombre de la tabla
+    return this.Firestore.collection('alumnos').add(dato);
+  }//alumnos es el nombre de la tabla
 }

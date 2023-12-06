@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Persona } from 'src/app/interfaces/persona';
+import { User } from 'src/app/interfaces/user';
 import { Storage } from '@ionic/storage-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LoadingController } from '@ionic/angular';
@@ -17,7 +17,8 @@ export class RegistrarcePage implements OnInit {
 
   dato: any;
 
-  persona:Persona={
+  user:User={
+    uid:'',
     nombre:'',
     correo:'',
     contrasena:'',
@@ -68,7 +69,7 @@ export class RegistrarcePage implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.persona);
+    console.log(this.user);
     this.guardar();
   }
 

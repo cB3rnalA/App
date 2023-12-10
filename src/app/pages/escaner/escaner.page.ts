@@ -13,25 +13,28 @@ import { Persona } from 'src/app/interfaces/persona';
   templateUrl: './escaner.page.html',
   styleUrls: ['./escaner.page.scss'],
 })
-export class EscanerPage implements OnInit {
+export class EscanerPage /*implements OnInit*/ {
   texto : string=''
-  constructor(private barcodescanner:BarcodeScanner,private storage: Storage, public authService : AuthenticationService, private router:Router){
+  constructor(private barcodescanner:BarcodeScanner /*private storage: Storage, public authService : AuthenticationService, private router:Router*/){
   }
-  
-  async scan(){
-    let fake='texto: hola ,format:"jsdjsjd,';
-    let val = fake.split(',')
-    let cor = await this.obtenerCorreo()
-    console.log( cor + val[0])
-    this.storage.set(cor , val[0])//se guarda en el storage
-    this.navegar('asignaturas')
+  scan(){
+    this.barcodescanner.scan().then(barcodedata=>{
+      console.log("Scaneando...", barcodedata);
+      this.texto=(JSON.stringify(barcodedata));
+    }).catch(err=>{
+      console.log("ERROR AL ESCANEAR!!!!");
+    })
 
-    /* this.barcodescanner.scan().then(barcodedata=>{
+  }
+}
+  /*
+  async scan(){
+    this.barcodescanner.scan().then(barcodedata=>{
       console.log("escaneando ...",barcodedata);
       this.texto=(JSON.stringify(barcodedata));
     }).catch(err=>{
       console.log("Error al escanear"); 
-    }) */
+    })
   }
 
   async obtenerCorreo(){
@@ -48,10 +51,7 @@ export class EscanerPage implements OnInit {
 
   ngOnInit() {
   }
-
-  navegar(ruta:String){
-    this.router.navigate(['/'+ruta]);
-  }
+*/
 
   /* 
   categorias:Categoria[]=[];

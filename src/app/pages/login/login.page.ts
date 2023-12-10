@@ -45,10 +45,10 @@ export class LoginPage implements OnInit {
       })
 
       if(user){
+        this.activar(1);
         loading.dismiss()
         console.log("hacia home")
         this.router.navigate(['/home'])
-        this.activar(1);
       } else {
         console.log(this.loginForm.value.contrasena);
         console.log('providew correct values')

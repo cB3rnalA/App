@@ -13,26 +13,29 @@ import { AngularFireList,AngularFireObject,AngularFireDatabase } from '@angular/
   templateUrl: './escaner.page.html',
   styleUrls: ['./escaner.page.scss'],
 })
-export class EscanerPage implements OnInit {
-
+export class EscanerPage /*implements OnInit*/ {
   texto : string=''
-  constructor(private barcodescanner:BarcodeScanner,private storage: Storage, public authService : AuthenticationService){
-  }
+  constructor(private barcodescanner:BarcodeScanner /*private storage: Storage, public authService : AuthenticationService, private router:Router*/){}
   
+  scan(){
+    this.barcodescanner.scan().then(barcodedata=>{
+      console.log("Scaneando...", barcodedata);
+      this.texto=(JSON.stringify(barcodedata));
+    }).catch(err=>{
+      console.log("ERROR AL ESCANEAR!!!!");
+    })
+
+  }
+}
+
+  /*
   async scan(){
-    let fake='texto: hola ,format:"jsdjsjd,waaaa';
-    let val = fake.split(',')
-    let cor = await this.obtenerCorreo()
-    let dat = cor + " " + val[0];
-    console.log(dat)
-    this.storage.set(cor , val[0])//se guarda en el storage
-    /* this.authService.enviarDatos() */
-    /* this.barcodescanner.scan().then(barcodedata=>{
+    this.barcodescanner.scan().then(barcodedata=>{
       console.log("escaneando ...",barcodedata);
       this.texto=(JSON.stringify(barcodedata));
     }).catch(err=>{
       console.log("Error al escanear"); 
-    }) */
+    })
   }
 
   async obtenerCorreo(){
@@ -49,6 +52,7 @@ export class EscanerPage implements OnInit {
 
   ngOnInit() {
   }
+*/
 
   /* 
   categorias:Categoria[]=[];
@@ -79,4 +83,4 @@ export class EscanerPage implements OnInit {
     });
   } */
 
-}
+

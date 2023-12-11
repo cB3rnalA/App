@@ -1,22 +1,85 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ServicioUbicacionService } from 'src/app/services/servicio-ubicacion.service';
-import { Categoria,Categorias } from 'src/app/interfaces/comidas';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
-import { Storage } from '@ionic/storage-angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { AngularFireList,AngularFireObject,AngularFireDatabase } from '@angular/fire/compat/database';
+import { UtilsService } from 'src/app/services/utils.service';
+import { AddUpdateComponent } from 'src/app/components/add-update/add-update.component';
+import { User } from 'firebase/auth';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-escaner',
   templateUrl: './escaner.page.html',
   styleUrls: ['./escaner.page.scss'],
 })
-export class EscanerPage /*implements OnInit*/ {
+export class EscanerPage implements OnInit {
   texto : string=''
+  
+  form = new FormGroup({
+    id: new FormControl(''),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    date: new FormControl(''),
+
+  })
+  firebaseSvc = inject(AuthenticationService);
+  utilsSvc = inject(UtilsService)
   constructor(private barcodescanner:BarcodeScanner /*private storage: Storage, public authService : AuthenticationService, private router:Router*/){}
   
+  user = {} as User;
+
+  ngOnInit() {
+    this.user =this.utilsSvc.getFromLocalStorage('user');
+  }
+
+  async submit(){
+    if (this.form.valid) {
+      let path = `users/${this.user.uid}/asignaturas`
+
+      const loading = await this.utilsSvc.loading();
+      await loading.present();
+
+      delete this.form.value.id;
+
+      this.firebaseSvc.addDocument(path,this.form.value as User).then(async res =>{
+
+        this.utilsSvc.dismissModal({ success: true });
+
+        this.utilsSvc.presentToast({
+          message: "Asignatura guardada correctamente",
+          duration: 2500,
+          color: 'primary',
+          position: 'middle',
+          icon:'alert-circle-outline'
+        })
+
+      }).catch(error => {
+        console.log(error)
+
+        this.utilsSvc.presentToast({
+          message: "No se a guardado la asignatura",
+          duration: 2500,
+          color: 'primary',
+          position: 'middle',
+          icon:'alert-circle-outline'
+        })
+      }).finally(() => {
+        loading.dismiss();
+      })
+    }
+  }
+  
+  //====== agregar asistencia ======
+  addAsig(){
+    this.utilsSvc.presentModal({
+      component: AddUpdateComponent,
+      
+    })
+  }
+
+
   scan(){
     this.barcodescanner.scan().then(barcodedata=>{
       console.log("Scaneando...", barcodedata);

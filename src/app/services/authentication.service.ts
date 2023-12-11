@@ -1,10 +1,10 @@
-import { Injectable,inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import firebase from 'firebase/compat/app';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail} from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from 'firebase/auth';
 import { User } from '../interfaces/user';
-import { getFirestore,setDoc,doc,getDoc } from '@angular/fire/firestore';
+import { getFirestore, setDoc, doc, getDoc, addDoc, collection } from '@angular/fire/firestore';
 import { UtilsService } from './utils.service';
 
 
@@ -19,35 +19,35 @@ export class AuthenticationService {
 
   //=====================autenticacion=====================
 
-  getAuth(){
+  getAuth() {
     return getAuth();
   }
 
 
 
   //============acceder=============
-  signIn(user: User){
+  signIn(user: User) {
     return signInWithEmailAndPassword(getAuth(), user.email, user.password);
   }
 
   //============Crear Usuario=============
-  signUp(user: User){
+  signUp(user: User) {
     return createUserWithEmailAndPassword(getAuth(), user.email, user.password);
   }
 
   //============Actualizar Usuario=============
-  updateUser(displayName: string){
+  updateUser(displayName: string) {
     return updateProfile(getAuth().currentUser, { displayName })
   }
 
   //=========== Enviar email para restablecer contraseña =========
 
-  sendRecoveryEmail(email: string){
+  sendRecoveryEmail(email: string) {
     return sendPasswordResetEmail(getAuth(), email)
   }
 
   //======== cerrar sesion ==========
-  signOut(){
+  signOut() {
     getAuth().signOut();
     localStorage.removeItem('user');
     this.utilSvc.routerLink('/login')
@@ -57,27 +57,37 @@ export class AuthenticationService {
   // ================ Base de datos ===============
 
   // ============ setear un documento =======
-  setDocument(path: string, data:any){
-    return setDoc(doc(getFirestore(),path),data);
+  setDocument(path: string, data: any) {
+    return setDoc(doc(getFirestore(), path), data);
   }
 
   // ============ obtener un documento =======
-  async getDocument(path: string){
-    return (await getDoc(doc(getFirestore(),path))).data();
+  async getDocument(path: string) {
+    return (await getDoc(doc(getFirestore(), path))).data();
   }
+
+  // ==================== Add document ==============
+  addDocument(path: string, data: any) {
+    return addDoc(collection(getFirestore(), path), data);
+  }
+
+
+
+
+  //============== almacenamiento ===========
 
 
 
   constructor(public ngFireAuth: AngularFireAuth, public Firestore: AngularFirestore) { }
 
-  
 
-  async getProfile(){
+
+  async getProfile() {
     return await this.ngFireAuth.currentUser;
   }
 
 
-  enviarDatos(dato : any){
+  enviarDatos(dato: any) {
     return this.Firestore.collection('alumnos').add(dato);
   }//alumnos es el nombre de la tabla
 }

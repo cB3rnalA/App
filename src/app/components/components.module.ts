@@ -5,12 +5,13 @@ import { IonicModule } from '@ionic/angular';
 import { HeaderComponent } from './header/header.component';
 import { CustomInputComponent } from './custom-input/custom-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddUpdateComponent } from './add-update/add-update.component';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent,FooterComponent,CustomInputComponent],
-  exports:[HeaderComponent,FooterComponent,CustomInputComponent,ReactiveFormsModule] ,
+  declarations: [HeaderComponent,FooterComponent,CustomInputComponent,AddUpdateComponent],
+  exports:[HeaderComponent,FooterComponent,CustomInputComponent,ReactiveFormsModule,AddUpdateComponent] ,
   imports: [
     CommonModule,
     IonicModule,

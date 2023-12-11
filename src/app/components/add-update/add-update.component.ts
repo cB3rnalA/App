@@ -20,19 +20,31 @@ export class AddUpdateComponent  implements OnInit {
   firebaseSvc = inject(AuthenticationService);
   utilsSvc = inject(UtilsService)
 
+  user = {} as User;
+
   ngOnInit() {
+    this.user = this.utilsSvc.getFromLocalStorage('user');
   }
 
   async submit(){
     if (this.form.valid) {
-      const loading = await this.utilsSvc.loading();
-      await loading.present();
 
-      this.firebaseSvc.signUp(this.form.value as User).then(async res =>{
-        await this.firebaseSvc.updateUser(this.form.value.name)
+      let path = `users/${this.user.uid}/asignaturas`
 
-        let uid = res.user.uid;
 
+      delete this.form.value.id
+      
+      this.firebaseSvc.addDocument(path,this.form.value as User).then(async res =>{
+        
+        this.utilsSvc.modalCtrl.dismiss({ success: true });
+        
+        this.utilsSvc.presentToast({
+          message: "agregada la asistencia",
+          duration: 2500,
+          color: 'primary',
+          position: 'middle',
+          icon:'alert-circle-outline'
+        })
 
       }).catch(error => {
         console.log(error)
@@ -45,7 +57,6 @@ export class AddUpdateComponent  implements OnInit {
           icon:'alert-circle-outline'
         })
       }).finally(() => {
-        loading.dismiss();
       })
     }
   }

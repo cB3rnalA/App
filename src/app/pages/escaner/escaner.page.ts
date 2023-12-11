@@ -5,7 +5,7 @@ import { ServicioUbicacionService } from 'src/app/services/servicio-ubicacion.se
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { Storage } from '@ionic/storage-angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { AngularFireList,AngularFireObject,AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireList, AngularFireObject, AngularFireDatabase } from '@angular/fire/compat/database';
 import { UtilsService } from '../../services/utils.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from 'src/app/interfaces/user';
@@ -25,32 +25,63 @@ export class EscanerPage /*implements OnInit*/ {
   })
 
   utilSvc = inject(UtilsService);
-  constructor(private barcodescanner:BarcodeScanner /*private storage: Storage, public authService : AuthenticationService, private router:Router*/){}
-  
+  constructor(private barcodescanner: BarcodeScanner /*private storage: Storage, public authService : AuthenticationService, private router:Router*/) { }
+
   scan(): void {
     this.barcodescanner.scan().then((barcodedata: { text: string }) => {
       console.log("Escaneando...", barcodedata);
-  
+
       try {
-        const parsedData: { fecha?: string, hora?: string, asignatura?: string } = JSON.parse(barcodedata.text);
-  
+        const rawText = barcodedata.text;
+
+        // Extrayendo datos del texto en formato [clave,valor;clave,valor;...]
+        const keyValuePairs = rawText.substring(1, rawText.length - 1).split(';');
+
+        const parsedData: { fecha?: string, hora?: string, asignatura?: string } = {};
+
+        keyValuePairs.forEach(pair => {
+          const [key, value] = pair.split(',');
+
+          if (key && value) {
+            parsedData[key.trim()] = value.trim();
+          }
+        });
+
         if (parsedData.fecha && parsedData.hora && parsedData.asignatura) {
           console.log("Fecha:", parsedData.fecha);
           console.log("Hora:", parsedData.hora);
           console.log("Asignatura:", parsedData.asignatura);
-  
-          // Puedes asignar estos valores a las propiedades de tu componente si es necesario
-          this.form.value.fecha = parsedData.fecha;
-          this.form.value.hora = parsedData.hora;
-          this.form.value.asignatura = parsedData.asignatura;
-          // Asigna valores al formulario
-          this.form.setValue({
-            fecha: parsedData.fecha,
-            hora: parsedData.hora,
-            asignatura: parsedData.asignatura
-          });
 
-          this.submit();
+          // Puedes asignar estos valores a las propiedades de tu componente si es necesario
+          this.form.patchValue(parsedData);
+
+          let path = `users/${this.user.uid}/asignaturas`
+
+
+
+          this.firebaseSvc.addDocument(path, this.form.value as User).then(async res => {
+
+            this.utilsSvc.modalCtrl.dismiss({ success: true });
+
+            this.utilsSvc.presentToast({
+              message: "agregada la asistencia",
+              duration: 2500,
+              color: 'primary',
+              position: 'middle',
+              icon: 'alert-circle-outline'
+            })
+
+          }).catch(error => {
+            console.log(error)
+
+            this.utilsSvc.presentToast({
+              message: "correo o cantraseña invalidos",
+              duration: 2500,
+              color: 'primary',
+              position: 'middle',
+              icon: 'alert-circle-outline'
+            })
+          })
         } else {
           console.log("Formato de código QR inválido");
         }
@@ -70,23 +101,23 @@ export class EscanerPage /*implements OnInit*/ {
     this.user = this.utilsSvc.getFromLocalStorage('user');
   }
 
-  async submit(){
+  async submit() {
     if (this.form.valid) {
 
       let path = `users/${this.user.uid}/asignaturas`
 
 
-      
-      this.firebaseSvc.addDocument(path,this.form.value as User).then(async res =>{
-        
+
+      this.firebaseSvc.addDocument(path, this.form.value as User).then(async res => {
+
         this.utilsSvc.modalCtrl.dismiss({ success: true });
-        
+
         this.utilsSvc.presentToast({
           message: "agregada la asistencia",
           duration: 2500,
           color: 'primary',
           position: 'middle',
-          icon:'alert-circle-outline'
+          icon: 'alert-circle-outline'
         })
 
       }).catch(error => {
@@ -97,7 +128,7 @@ export class EscanerPage /*implements OnInit*/ {
           duration: 2500,
           color: 'primary',
           position: 'middle',
-          icon:'alert-circle-outline'
+          icon: 'alert-circle-outline'
         })
       }).finally(() => {
       })
@@ -107,48 +138,48 @@ export class EscanerPage /*implements OnInit*/ {
 
 
 
-  /*
-  async scan(){
-    this.barcodescanner.scan().then(barcodedata=>{
-      console.log("escaneando ...",barcodedata);
-      this.texto=(JSON.stringify(barcodedata));
-    }).catch(err=>{
-      console.log("Error al escanear"); 
-    })
-  }
+/*
+async scan(){
+  this.barcodescanner.scan().then(barcodedata=>{
+    console.log("escaneando ...",barcodedata);
+    this.texto=(JSON.stringify(barcodedata));
+  }).catch(err=>{
+    console.log("Error al escanear"); 
+  })
+}
 
-  async obtenerCorreo(){
-    try {
-      const profile = await this.authService.getProfile();
-      const correo = profile.email;
-      console.log('Correo obtenido:', correo);
-      return correo;
-    }catch(error) {
-      console.error('Error al obtener el perfil:', error);
-      throw error;
-    }
+async obtenerCorreo(){
+  try {
+    const profile = await this.authService.getProfile();
+    const correo = profile.email;
+    console.log('Correo obtenido:', correo);
+    return correo;
+  }catch(error) {
+    console.error('Error al obtener el perfil:', error);
+    throw error;
   }
+}
 
-  ngOnInit() {
-  }
+ngOnInit() {
+}
 */
 
-  /* 
-  categorias:Categoria[]=[];
+/*
+categorias:Categoria[]=[];
 
-  constructor(private alertController: AlertController,private router:Router, private servicioubicacion:ServicioUbicacionService) { }
+constructor(private alertController: AlertController,private router:Router, private servicioubicacion:ServicioUbicacionService) { }
 
-  async presentAlert() {
-    const alert = await this.alertController.create({
-      header: 'Registro de clase',
-      message: 'El registro de clase fue excitoso',
-      buttons: [
-        {
-          text:'ok'
-        }
-      ],
-    });
+async presentAlert() {
+  const alert = await this.alertController.create({
+    header: 'Registro de clase',
+    message: 'El registro de clase fue excitoso',
+    buttons: [
+      {
+        text:'ok'
+      }
+    ],
+  });
 
-    await alert.present();
-    this.router.navigate(['home']);
-  }*/
+  await alert.present();
+  this.router.navigate(['home']);
+}*/

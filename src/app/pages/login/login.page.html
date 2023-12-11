@@ -10,33 +10,43 @@
 
 
 <ion-content class="fond">
+
   <div class="cont">
     <ion-card>
-      <h3 style="margin-top: 1.4rem;"><b>Inicio de Sesion</b></h3>
-      <div class="cont-inpt">
-        <form [formGroup]="loginForm" (ngSubmit)="signUp()">
-          <ion-item>
-            <ion-label position="floating">correo </ion-label>
-            <ion-input name="correo" type="text" formControlName="correo"></ion-input>
-          </ion-item>
-          
-          <ion-item>
-            <ion-label position="floating">contraseña </ion-label>
-            <ion-input name="contrasena" type="password" formControlName="contrasena"></ion-input>
-          </ion-item>
-          
-          <ion-row>
-            <ion-col class="cont-btn">
-              <ion-button (click)="signUp()" class="btn-log" 
-                style="font-size: 2vh; color: rgb(0, 0, 0);"><b>Login</b></ion-button>
-              <br>
-              <a (click)="navegar('valid-data-rec')" class="small-text rec-contr">Recuperar contraseña</a>
-              <br>
-              <a (click)="navegar('registrarce')" class="small-text rec-contr">Registrarce</a>
-            </ion-col>
-          </ion-row><!-- [disabled]="loginForm.invalid" -->
-        </form>
-      </div>
+
+
+      <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+        <app-custom-input autocomplete="email" icon="mail-outline" [control]="form.controls.email" type="email"
+          label="Correo"></app-custom-input>
+
+        <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched ">
+          <div *ngIf="form.controls.email.errors?.['required']"> El correo es requerido</div>
+          <div *ngIf="form.controls.email.errors?.['email']"> Ingrese un correo valido</div>
+        </div>
+
+
+
+
+        <app-custom-input [control]="form.controls.password" icon="lock-closed-outline" type="password"
+          label="Contraseña"></app-custom-input>
+
+        <div class="validators" *ngIf="form.controls.password.errors && form.controls.password.touched ">
+          <div *ngIf="form.controls.email.errors?.['required']">La contraseña es requerida</div>
+        </div>
+
+        <a href="rec-contra">¿Olvidaste tu contraseña?</a>
+        <!-- {{form.value | json}} -->
+
+        <ion-button expand="block" fill="clear" class="submit btn-log" type="submit" [disabled]="form.invalid">
+          Ingresar
+          <ion-icon slot="end" name="log-in-outline"></ion-icon>
+        </ion-button>
+        <ion-button expand="block" fill="clear" shape="round" class="btn-log" (click)="navegar('registrarce')">
+          registrarse
+          <ion-icon slot="end" name="person-add-outline"></ion-icon>
+        </ion-button>
+      </form>
     </ion-card>
   </div>
 </ion-content>

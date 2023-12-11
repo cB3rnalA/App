@@ -21,8 +21,7 @@ export class CerrarSesionPage implements OnInit {
   }
 
   async logout() {
-    this.authService.signOut().then(() => {
-      this.router.navigate(['/login'])
-    })
+    this.authService.signOut()
+    
   }
 }

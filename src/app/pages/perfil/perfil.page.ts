@@ -26,9 +26,7 @@ export class PerfilPage {
 
 
   async logout(){
-    this.authService.signOut().then(()=>{
-      this.router.navigate(['/login'])
-    })
+    this.authService.signOut()
   }
 
 

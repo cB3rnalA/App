@@ -6,7 +6,6 @@ import { Categoria,Categorias } from 'src/app/interfaces/comidas';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { Storage } from '@ionic/storage-angular';
 import { AuthenticationService } from 'src/app/services/authentication.service';
-import { Persona } from 'src/app/interfaces/user';
 import { AngularFireList,AngularFireObject,AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({

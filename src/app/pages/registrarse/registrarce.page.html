@@ -55,6 +55,8 @@
   
         <div class="validators" *ngIf="form.controls.password.errors && form.controls.password.touched " >
           <div *ngIf="form.controls.email.errors?.['required']" >La contraseña es requerida</div>
+          <div *ngIf="form.controls.email.errors?.['minLength']">La contraseña es corta</div>
+
         </div>
   
         <!-- {{form.value | json}} -->

@@ -17,7 +17,7 @@ export class LoginPage implements OnInit {
   })
 
   firebaseSvc = inject(AuthenticationService);
-  utilsSvc = inject(UtilsService)
+  utilsSvc = inject(UtilsService);
 
   ngOnInit() {
   }

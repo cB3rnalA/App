@@ -4,7 +4,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile, sendPasswordResetEmail } from 'firebase/auth';
 import { User } from '../interfaces/user';
-import { getFirestore, setDoc, doc, getDoc, addDoc, collection } from '@angular/fire/firestore';
+import { getFirestore, setDoc, doc, getDoc, addDoc, collection , collectionData , query} from '@angular/fire/firestore';
 import { UtilsService } from './utils.service';
 
 
@@ -55,6 +55,13 @@ export class AuthenticationService {
 
 
   // ================ Base de datos ===============
+
+  // ======== obtener docs de una colleccion ========
+  getCollectionData(path: string, collectionQuery?:any){
+    const ref = collection(getFirestore(),path);
+    return collectionData(query(ref, collectionQuery), {idField: 'id'});
+  }
+
 
   // ============ setear un documento =======
   setDocument(path: string, data: any) {

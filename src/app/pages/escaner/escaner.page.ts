@@ -15,8 +15,8 @@ import { Persona } from 'src/app/interfaces/persona';
 })
 export class EscanerPage /*implements OnInit*/ {
   texto : string=''
-  constructor(private barcodescanner:BarcodeScanner /*private storage: Storage, public authService : AuthenticationService, private router:Router*/){
-  }
+  constructor(private barcodescanner:BarcodeScanner /*private storage: Storage, public authService : AuthenticationService, private router:Router*/){}
+  
   scan(){
     this.barcodescanner.scan().then(barcodedata=>{
       console.log("Scaneando...", barcodedata);

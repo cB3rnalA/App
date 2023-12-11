@@ -27,6 +27,7 @@ export class EscanerPage /*implements OnInit*/ {
 
   }
 }
+
   /*
   async scan(){
     this.barcodescanner.scan().then(barcodedata=>{
@@ -82,4 +83,4 @@ export class EscanerPage /*implements OnInit*/ {
     });
   } */
 
-}
+

@@ -25,20 +25,48 @@ ion-content {
 
 */
 
-ion-content.fond {
-  --ion-background-color: #E0EAFC;
-  /* fallback for old browsers */
-  --ion-background-color: -webkit-linear-gradient(to right, #CFDEF3, #E0EAFC);
-  /* Chrome 10-25, Safari 5.1-6 */
-  --ion-background-color: linear-gradient(to right, #CFDEF3, #E0EAFC);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-
+ion-button{
+  --background: #D9D9D9;
+  --box-shadow: 0 2px 6px 0 rgb(0, 0, 0, 0.9);
 }
 
-.sup-btn{
-  margin-bottom: 2.5rem;
-  align-items: center;
+ion-content {
+  display: flex;
   justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.sup-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 6%;
+}
+
+.custom-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  white-space: normal;
+  font-size: 1.5rem;
+  height: 12vh;
+  width: 16vh;
+  margin: 0 20px;
+  color: #1D1C1C;
+  
+}
+
+.custom-icon {
+  margin-bottom: 5px;
+  font-size: 2.3rem;
+}
+
+.custom-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .centered-button {
@@ -49,19 +77,14 @@ ion-content.fond {
   /* Esto asegura que el contenedor ocupe toda la altura de la pantalla */
 }
 
-.cont-head {
-  margin-top: 4vh;
-  margin-bottom: 3vh;
-}
-
 .new-background-color {
   --background: #8E9FF9;
 }
 
 .titl-heade {
-  margin: 1rem;
+  margin: 2rem;
   text-align: center;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family:Verdana, Geneva, Tahoma, sans-serif ;
   font-size: 35px;
   font-weight: 700;
   color: white;
@@ -73,7 +96,7 @@ ion-content.fond {
 }
 
 .cont-general {
-  margin-top: 12vh;
+  margin-top: 7vh;
 }
 
 .inic {
@@ -81,8 +104,10 @@ ion-content.fond {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.registro-btn {
-  margin-bottom: 15%;
+.registro-btn {  
   align-items: center;
   justify-content: center;
+  margin-bottom: 5%;
+  margin-left: 3vh;
+  margin-right: 3vh;
 }

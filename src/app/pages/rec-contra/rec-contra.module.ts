@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { RecContraPageRoutingModule } from './rec-contra-routing.module';
 
 import { RecContraPage } from './rec-contra.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        RecContraPageRoutingModule
+        RecContraPageRoutingModule,
+        ComponentsModule
     ],
     declarations: [RecContraPage]
 })

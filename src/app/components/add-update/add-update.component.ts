@@ -1,65 +1,64 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { UtilsService } from 'src/app/services/utils.service';
 @Component({
-  selector: 'app-rec-contra',
-  templateUrl: './rec-contra.page.html',
-  styleUrls: ['./rec-contra.page.scss'],
+  selector: 'app-add-update',
+  templateUrl: './add-update.component.html',
+  styleUrls: ['./add-update.component.scss'],
 })
-export class RecContraPage implements OnInit {
+export class AddUpdateComponent  implements OnInit {
 
   form = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    id: new FormControl(''),
+    name: new FormControl('', [Validators.required, Validators.minLength(4)]),
+    date: new FormControl(''),
+
   })
 
   firebaseSvc = inject(AuthenticationService);
   utilsSvc = inject(UtilsService)
 
+  user = {} as User;
+
   ngOnInit() {
+    this.user = this.utilsSvc.getFromLocalStorage('user');
   }
 
   async submit(){
     if (this.form.valid) {
-      const loading = await this.utilsSvc.loading();
-      await loading.present();
 
-      this.firebaseSvc.sendRecoveryEmail(this.form.value.email).then(res =>{
+      let path = `users/${this.user.uid}/asignaturas`
+
+
+      delete this.form.value.id
+      
+      this.firebaseSvc.addDocument(path,this.form.value as User).then(async res =>{
+        
+        this.utilsSvc.modalCtrl.dismiss({ success: true });
+        
         this.utilsSvc.presentToast({
-          message: 'Correo enviado con exito',
-          duration: 1500,
+          message: "agregada la asistencia",
+          duration: 2500,
           color: 'primary',
           position: 'middle',
-          icon:'mail-outline'
+          icon:'alert-circle-outline'
         })
-        this.utilsSvc.routerLink('/login');
-        this.form.reset();
 
       }).catch(error => {
         console.log(error)
 
         this.utilsSvc.presentToast({
-          message: "correo invalido",
+          message: "correo o cantraseña invalidos",
           duration: 2500,
           color: 'primary',
           position: 'middle',
           icon:'alert-circle-outline'
         })
       }).finally(() => {
-        loading.dismiss();
       })
     }
   }
 
-  constructor(private router:Router) { }
-
-  navegar(ruta:String){
-    console.log("antes");
-    this.router.navigate(['/'+ruta]);
-    console.log("funciona");
-  }
-
 }
-

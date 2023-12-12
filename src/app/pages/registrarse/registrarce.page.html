@@ -2,7 +2,7 @@
   <div class="cont-head">
     <ion-toolbar class="new-background-color">
       <ion-buttons slot="start">
-        <ion-back-button defaultHref=""></ion-back-button>
+        <ion-back-button defaultHref="login"></ion-back-button>
       </ion-buttons>
       <ion-title class="titl-heade">
         Registrarse
@@ -12,53 +12,61 @@
 </ion-header>
 
 <ion-content class="fond">
-  <div class="cont">
+  <div class="cont-inpt">
     <ion-card>
       <h3 style="margin-top: 1rem;">Registro</h3>
-      <div class="cont-inpt">
-        <form [formGroup]="regForm" novalidate>
-          <ion-item>
-            <ion-label position="floating">Nombre</ion-label>
-            <ion-input name="nombre" type="text" formControlName="nombre"></ion-input>
-          </ion-item>
-          <div *ngIf="this.regForm.controls?.['nombre'] && this.regForm.controls?.['nombre'].invalid" style="margin-top: 0.5rem;">
-            <ion-text style="color: grey;">
-              * El nombre es requerido
-            </ion-text>
-          </div>
-          <br>
-          <ion-item>
-            <ion-label position="floating">Correo </ion-label>
-            <ion-input name="correo" type="text" formControlName="correo"></ion-input>
-          </ion-item>
-          <div *ngIf="this.regForm.controls?.['correo'] && this.regForm.controls?.['correo'].invalid" style="margin-top: 0.5rem;">
-            <ion-text style="color: grey;"> <!-- *ngIf="errorControl.correo.errors?.required" --> <!-- No funciona el ngIf -->
-              * El Correo es requerido
-            </ion-text>
-          </div>
-          <br>
-          <ion-item>
-            <ion-label position="floating">Contraseña </ion-label>
-            <ion-input name="contrasena" type="password" formControlName="contrasena"></ion-input>
-          </ion-item>
-          <div *ngIf="this.regForm.controls?.['contrasena'] && this.regForm.controls?.['contrasena'].invalid" style="margin-top: 0.5rem;">
-            <ion-text style="color: grey;"> <!-- *ngIf="regForm.controls['contrasena'].hasError('pattern')" --> <!-- No funciona el ngIf -->
-              * La contraseña es invalida
-            </ion-text>
-          </div>
-          <br>
+      <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress.enter)="submit()">
 
-          <!-- <ion-item>
-      <ion-label position="floating">contraseña </ion-label>
-      <ion-input required name="contrasena2" type="password" ></ion-input>
-    </ion-item> -->
-          <div class="cont-btn"> 
-            <ion-button (click)="signUp()" class="btn-log">
-              Login
-            </ion-button>
-          </div>
-        </form>
+        <!-- Name -->
+        <app-custom-input 
+        autocomplete="name"
+        icon="person-outline"
+        [control]="form.controls.name"
+        type="text"
+        label="Nombre"
+        ></app-custom-input>
+  
+        <div class="validators" *ngIf="form.controls.name.errors && form.controls.name.touched " >
+          <div *ngIf="form.controls.name.errors?.['required']" > El nombre es requerido</div>
+          <div *ngIf="form.controls.name.errors?.['minlenght']" > El nombre debe tener al menos 4 caracteres</div>
+        </div>
+  
+        <!-- email -->
+        <app-custom-input 
+        autocomplete="email" 
+        icon="mail-outline" 
+        [control]="form.controls.email" 
+        type="email"
+        label="Correo"></app-custom-input>
+
+      <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched ">
+        <div *ngIf="form.controls.email.errors?.['required']"> El correo es requerido</div>
+        <div *ngIf="form.controls.email.errors?.['email']"> Ingrese un correo valido</div>
       </div>
+
+
+      <!-- password -->
+        <app-custom-input 
+        [control]="form.controls.password"
+        icon="lock-closed-outline"
+        type="password"
+        label="Contraseña"
+        ></app-custom-input>
+  
+        <div class="validators" *ngIf="form.controls.password.errors && form.controls.password.touched " >
+          <div *ngIf="form.controls.email.errors?.['required']" >La contraseña es requerida</div>
+          <div *ngIf="form.controls.email.errors?.['minLength']">La contraseña es corta</div>
+
+        </div>
+  
+        <!-- {{form.value | json}} -->
+  
+        <ion-button expand="block" fill="clear" class="submit btn-log" type="submit" [disabled]="form.invalid">
+          registrarse
+          <ion-icon slot="end" name="log-in-outline"></ion-icon>
+        </ion-button>
+        
+      </form>
     </ion-card>
   </div>
 </ion-content>

@@ -1,0 +1,57 @@
+<ion-header style="background: #8E9FF9">
+  <div class="cont-head">
+    <ion-toolbar class="new-background-color">
+      <ion-title class="titl-heade">
+        Asistapp
+      </ion-title>
+    </ion-toolbar>
+  </div>
+</ion-header>
+
+
+<ion-content class="fond">
+
+  <div class="cont">
+
+    <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress.enter)="submit()">
+      <div class="contgeneral">
+        <h3 style="margin-top: 1.6rem;"><b>Inicio de Sesion</b></h3>
+        <!--contenedor correo-->
+        <div class="cont-correo">
+          <app-custom-input autocomplete="email" icon="mail-outline" [control]="form.controls.email" type="email"
+            label="Correo"></app-custom-input>
+
+          <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched ">
+            <div *ngIf="form.controls.email.errors?.['required']"> El correo es requerido</div>
+            <div *ngIf="form.controls.email.errors?.['email']"> Ingrese un correo valido</div>
+          </div>
+        </div>
+
+        <!--contenedor contraseña-->
+        <div class="cont-contra">
+          <app-custom-input [control]="form.controls.password" icon="lock-closed-outline" type="password"
+            label="Contraseña"></app-custom-input>
+
+          <div class="validators" *ngIf="form.controls.password.errors && form.controls.password.touched ">
+            <div *ngIf="form.controls.email.errors?.['required']">La contraseña es requerida</div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--botones-->
+      <ion-button expand="block" fill="clear" class="submit btn-log" type="submit" [disabled]="form.invalid">
+        Ingresar
+        <ion-icon slot="end" name="log-in-outline"></ion-icon>
+      </ion-button>
+      <ion-button expand="block" fill="clear" shape="round" class="btn-log" (click)="navegar('registrarce')">
+        registrarse
+        <ion-icon slot="end" name="person-add-outline"></ion-icon>
+      </ion-button>
+    </form>
+    <div style="margin-top: 5vh; display: flex; justify-content: center; align-items: center; font-size: 2vh;">
+      <a href="rec-contra">¿Olvidaste tu contraseña?</a>
+      <!-- {{form.value | json}} -->
+    </div>
+  </div>
+</ion-content>

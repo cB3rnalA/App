@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "ionicauth-90a29": {
+      "hosting": {
+        "app": [
+          "ionicauth-90a29"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "ionicauth-90a29"
+  }
+}

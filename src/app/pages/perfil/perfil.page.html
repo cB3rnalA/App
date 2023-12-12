@@ -1,0 +1,40 @@
+<app-header titulo="Perfil"></app-header>
+
+<ion-content>
+  <div>
+    <div class="cont-card">
+      <ion-card color="light">
+        <ion-card-header>
+          <ion-card-subtitle style="color: gray;">Estudiante</ion-card-subtitle>
+          <ion-card-title>
+          {{user.name}}
+          </ion-card-title>
+        </ion-card-header>
+
+        <ion-card-content>
+          Rut: 69698989-8
+        </ion-card-content>
+      </ion-card>
+    </div>
+
+    <div class="cont-opcion">
+      <ion-card>
+        <ion-item button (click)="navegar('inf-acad')" detail="true">
+          <ion-label>
+            <h3>Informacion academica</h3>
+          </ion-label>
+        </ion-item>
+
+        <ion-item button (click)="navegar('datos-person')" detail="true">
+          <ion-label>
+            <h3>Datos Personales</h3>
+          </ion-label>
+        </ion-item>
+      </ion-card>
+    </div>
+
+
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

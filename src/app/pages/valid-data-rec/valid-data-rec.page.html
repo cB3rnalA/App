@@ -1,0 +1,31 @@
+<!--
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="navegar('login')">
+      <ion-icon slot="start" name="arrow-back-circle-outline" size="large"></ion-icon>
+    </ion-button>
+    <ion-title>Recuperar contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+-->
+<app-header titulo="Recuperar Contraseña"></app-header>
+
+<ion-content>
+  <div style="padding: 65% 5%;">
+    <form #miFormulario="ngForm" (ngSubmit)="onSubmit()">
+      <ion-item lines="full" class="inputs">
+        <ion-label position="floating">Rut</ion-label>
+        <ion-input type="text" required name="text" [(ngModel)]="usuario.Rut"></ion-input>
+      </ion-item>
+      <ion-item lines="full" class="inputs">
+        <ion-label position="floating">Correo Institucional</ion-label>
+        <ion-input type="email" required name="email" [(ngModel)]="usuario.Correo"></ion-input>
+      </ion-item>
+      <ion-row>
+        <ion-col>
+          <ion-button type="submit" shape="round" expand="block" [disabled]="miFormulario.invalid">Validar</ion-button>
+        </ion-col>
+      </ion-row><!-- [disabled]="loginForm.invalid" -->
+    </form>
+  </div>
+</ion-content>

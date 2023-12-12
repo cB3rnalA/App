@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button (click)="navegar('login')">
+      <ion-icon slot="start" name="arrow-back-circle-outline" size="large" style="color: black;"></ion-icon>
+    </ion-button>
+    <ion-title>Recuperar contraseña</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="fond">
+
+  <div class="cont">
+    <ion-card>
+
+
+      <form [formGroup]="form" class="auth-form" (ngSubmit)="submit()" (keypress.enter)="submit()">
+
+        <app-custom-input autocomplete="email" icon="mail-outline" [control]="form.controls.email" type="email"
+          label="Correo"></app-custom-input>
+
+        <div class="validators" *ngIf="form.controls.email.errors && form.controls.email.touched ">
+          <div *ngIf="form.controls.email.errors?.['required']"> El correo es requerido</div>
+          <div *ngIf="form.controls.email.errors?.['email']"> Ingrese un correo valido</div>
+        </div>
+
+        <!-- {{form.value | json}} -->
+
+        <ion-button expand="block" fill="clear" class="submit btn-log" type="submit" [disabled]="form.invalid">
+          Recuperar
+          <ion-icon slot="end" name="arrow-forward"></ion-icon>
+        </ion-button>
+        
+      </form>
+    </ion-card>
+  </div>
+</ion-content>

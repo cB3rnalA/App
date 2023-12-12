@@ -1,0 +1,91 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-title class="titl-heade">Asistoapp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="ion-text-center fond ion-no-margin">
+  <div class="cont-general">
+    <div>
+      <h1 style="font-family:monospace; font-size: 4vh; margin-bottom: 8%;"><b>Inicio</b></h1>
+    </div>
+
+    <div class="registro-btn">
+      <ion-button (click)="navegar('asignaturas')" expand="block" style="font-size: 1.7rem; height: 15vh; color: #1D1C1C;">
+        <ion-icon name="book" style="margin-right: 10px; font-size: 2.7rem;"></ion-icon><b>Asignaturas</b></ion-button>
+    </div>
+
+    <div class="sup-btn">
+      <ion-row>
+        <ion-col size="6">
+          <ion-button (click)="navegar('inf-acad')" expand="block" class="custom-button">
+            <div>
+              <ion-icon name="bookmark" class="custom-icon"></ion-icon>
+              <div>
+                <ion-label class="custom-label"><b>periodo</b></ion-label>
+              </div>
+            </div>
+          </ion-button>
+        </ion-col>
+        <ion-col size="6">
+          <ion-button (click)="navegar('perfil')" expand="block" class="custom-button">
+            <div>
+              <ion-icon name="person" class="custom-icon"></ion-icon>
+              <div>
+                <ion-label class="custom-label"><b>Mi Perfil</b></ion-label>
+              </div>
+            </div>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="registro-btn">
+      <ion-button (click)="navegar('escaner')" expand="block"  style="font-size: 2rem; height: 10vh; color: #1D1C1C;">
+        <ion-icon name="qr-code-outline"
+          style="margin-right: 10px; font-size: 3.5rem;"></ion-icon><b>QR</b></ion-button>
+    </div>
+
+  </div>
+</ion-content>
+
+<app-footer></app-footer>
+
+
+
+
+
+<!-- ANTES
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center">
+  <div class="cont-general">
+    <div class="cont-txtini">
+      <ion-text class="inic">
+        <p>Inicio</p>
+      </ion-text>
+    </div>
+
+    <div class="registro-btn">
+      <ion-button (click)="navegar('asignaturas')" expand="large" style="width: 40vh; height: 17vh; font-size: 3vh;">
+      <ion-icon name="calendar-clear-outline" size="large" ></ion-icon>
+      Registro</ion-button>
+    </div> <-- style="margin-right: 10px;" 
+
+    <div class="registro-btn">
+      <ion-button (click)="navegar('escaner')" expand="large" style="width: 200px; height: 120px; font-size: 25px;">
+      <ion-icon name="qr-code-outline" size="large" style="margin-right: 10px;"></ion-icon>QR</ion-button>
+    </div>
+
+  </div>
+</ion-content>
+
+-->

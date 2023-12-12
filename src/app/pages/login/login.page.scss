@@ -15,14 +15,16 @@
     color: white;
 }
 
+/*
 ion-content.fond{
     --ion-background-color: #8360c3;
-    /* fallback for old browsers */
+    /* fallback for old browsers 
     --ion-background-color: -webkit-linear-gradient(to right, #2ebf91, #8360c3);
-    /* Chrome 10-25, Safari 5.1-6 */
+    /* Chrome 10-25, Safari 5.1-6 
     --ion-background-color: linear-gradient(to right, #2ebf91, #8360c3);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
 }
+*/
 
 .cont {
     justify-content: center;
@@ -43,6 +45,7 @@ ion-content.fond{
     margin-top: 5vh;
 }
 
+/*
 ion-card{
     --ion-background-color: white;
     --color: rgb(0, 0, 0);
@@ -52,6 +55,8 @@ ion-card{
     border-style: solid;
     border-width: 0.29vh;
 }
+*/
+
 
 .btn-log {
     --background: rgb(0, 213, 255);
@@ -85,4 +90,29 @@ h3 {
     justify-content: center;
     align-items: center;
     font-size: 3vh;
+}
+
+.contgeneral{
+    margin-bottom: 8vh;
+    margin-left: 3vh;
+    margin-right: 3vh;
+}
+
+.cont-correo{
+margin-top: 8vh;
+margin-bottom: 5vh;
+}
+
+.cont-contra{
+margin-bottom: 2vh;
+}
+
+.btn-log{
+    margin-top: 2.5vh;
+}
+
+.validators{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
